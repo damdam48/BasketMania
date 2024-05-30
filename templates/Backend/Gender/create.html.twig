@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Création d'un gender
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Création d'un gender</h1>
+
+		{% include 'Backend/Gender/_form.html.twig' with { buttonLabel: 'Créer' } %}
+		<a href="{{ path('admin.gender.index') }}" class="">Retour à la liste</a>
+	</section>
+{% endblock %}
