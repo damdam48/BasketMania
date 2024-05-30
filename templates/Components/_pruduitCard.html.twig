@@ -1,0 +1,22 @@
+<div>
+	<div>
+		<em>{{ product.name }}</em>
+	</div>
+	<div>
+		<em>{{ product.description }}</em>
+	</div>
+	<div>
+		<em>{{ product.enable }}</em>
+	</div>
+	<div>
+		<a href="{{ path('admin.product.update', {id: product.id }) }}" class="">Update</a>
+	</div>
+	<form method="POST" action="{{ path('admin.product.delete', {id: product.id}) }}" onsubmit="return confirm('Êtes-vous sùr de vouloir supprimer le produit ( {{ product.name }} ) ?')">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+		<button class="">Supprimer</button>
+	</form>
+	<br>
+
+
+</div>
