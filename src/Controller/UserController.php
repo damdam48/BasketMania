@@ -29,33 +29,46 @@ class UserController extends AbstractController
         ]);
     }
 
-//update user
-#[route('/{id}/update', name: '.update', method: ['POST', 'GET'])]
-public function update(?User $user, Request $request): Response|RedirectResponse
-{
-    if (!$user) {
-        $this->addFlash('error', 'Utilisateur non trouvé');
+    //update user
+    #[route('/{id}/update', name: '.update', methods: ['POST', 'GET'])]
+    public function update(?User $user, Request $request): Response|RedirectResponse
+    {
+        if (!$user) {
+            $this->addFlash('error', 'Utilisateur non trouvé');
+
+            return $this->redirectToRoute('admin.user.index');
+        }
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->persist($user);
+            $this->em->flush();
+
+            $this->addFlash('success', 'User mis à jour avec succès');
+
+            return $this->redirectToRoute('admin.user.index');
+        }
+
+        return $this->render('Backend/User/update.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    //delete user
+    #[Route('/{id}/delete', name: '.delete', methods: ['POST'])]
+    public function deleteProduct(User $user, Request $request)
+    {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+            $this->em->remove($user);
+            $this->em->flush();
+
+            $this->addFlash('success', 'Utilisateur supprimé avec succès');
+        } else {
+            $this->addFlash('error', 'Token invalide');
+        }
 
         return $this->redirectToRoute('admin.user.index');
     }
-
-    $form = $this->createForm(UserType::class, $user, ['isAdmin' => true]);
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-        $this->em->persist($user);
-        $this->em->flush();
-
-        $this->addFlash('success', 'User mis à jour avec succès');
-
-        return $this->redirectToRoute('admin.users.index');
-    }
-
-    return $this->render('Backend/Users/update.html.twig', [
-        'form' => $form,
-    ]);
-
-}
-
-
 }

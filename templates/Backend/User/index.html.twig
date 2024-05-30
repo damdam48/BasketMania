@@ -1,41 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}User index
+{% endblock %}
 
 {% block body %}
-    <h1>Liste utilisateur</h1>
+	<h1>Liste utilisateur</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id |</th>
-                <th>Email |</th>
-                <th>Role |</th>
-                <th>FirstName |</th>
-                <th>LastName |</th>
-                <th>Telephone |</th>
-                <th>BirthDate |</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.telephone }}</td>
-                <td>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</td>
-                <td>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id |</th>
+				<th>Email |</th>
+				<th>Role |</th>
+				<th>FirstName |</th>
+				<th>LastName |</th>
+				<th>Telephone |</th>
+				<th>BirthDate |</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
 
-                    {# <a href="{{ path('admin.user.update', {'id': user.id}) }}">edit</a> #}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-<br>
-    <a href="{{ path('admin.user.create') }}">New utilisateur</a>
+					<td>{{ user.email }}</td>
+					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+					<td>{{ user.firstName }}</td>
+					<td>{{ user.lastName }}</td>
+					<td>{{ user.telephone }}</td>
+					<td>{{ user.birthDate ? user.birthDate|date('Y-m-d') : '' }}</td>
+					<td>
+
+						<a href="{{ path('admin.user.update', {'id': user.id}) }}">edit</a>
+
+						<form method="POST" action="{{ path('admin.user.delete', {id: user.id}) }}" onsubmit="return confirm('Êtes-vous sùr de vouloir supprimer cet utilisateur ?')">
+							<input type="hidden" name="_method" value="DELETE">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+							<button class="">Supprimer</button>
+						</form>
+
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<br>
+
 {% endblock %}
