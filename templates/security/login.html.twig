@@ -2,25 +2,25 @@
 
 {% block title %}
 	Se connecter |
-	    BasketMania
+				    BasketMania
 {% endblock %}
 
 {% block body %}
 
-	<form action="{{ path('login') }}" method="post">
+	<form action="{{ path('login') }}" method="POST">
 		{% if error %}
-			{{error.messageKey | trans(erro.messageData, 'security')}}
+			{{error.messageKey | trans(error.messageData, 'security')}}
 		{% endif %}
 
 		<h1>Se connecter</h1>
 		<label for="email">Email:</label>
-		<input type="mail" name="email" id="email">
+		<input type="email" name="_username" id="email" value="{{ email }}">
 
 		<label for="password">Mot de passe:</label>
-		<input type="password" id="password" name="password">
+		<input type="password" id="password" name="_password">
 
 
-		<div >
+		<div>
 			<button type="submit">Se connecter</button>
 		</div>
 	</form>
