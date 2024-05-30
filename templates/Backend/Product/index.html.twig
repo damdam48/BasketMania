@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% block title %}
+	Liste des produits
+{% endblock %}
 
 {% block body %}
-<h1>Liste des produits</h1>
+	<h1>Liste des produits</h1>
 
+	{% for product in products %}
+		{% include 'Components/_pruduitCard.html.twig' %}
+	{% endfor %}
 
-
-<a href="{{ path('admin.product.create') }}" class="">Créer un Produit</a>
-
+	<br>
+	<a href="{{ path('admin.product.create') }}">Créer un Produit</a>
 
 {% endblock %}
