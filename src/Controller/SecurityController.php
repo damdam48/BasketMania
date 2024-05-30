@@ -12,9 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class SecurityControlleurController extends AbstractController
+class SecurityController extends AbstractController
 {
-    #[Route('/login', name: 'app.login', methods : ['GET', 'POST'])]
+    #[Route('/login', name: 'app.login', methods: ['GET', 'POST'])]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -28,7 +28,7 @@ class SecurityControlleurController extends AbstractController
     }
 
     //registers the user
-    #[Route('/register', name: 'app.register', methods : ['GET', 'POST'])]
+    #[Route('/register', name: 'app.register', methods: ['GET', 'POST'])]
     public function register(Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $em): Response
     {
         $user = new User();
@@ -37,15 +37,15 @@ class SecurityControlleurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-        
+
             $password = $hasher->hashPassword($user, $user->getPassword());
             $user->setPassword($password);
-            
+
             $em->persist($user);
             $em->flush();
-            
+
             $this->addFlash('success', 'User créé avec succès');
-            
+
             return $this->redirectToRoute('app.login');
         }
         return $this->render('security/register.html.twig', [

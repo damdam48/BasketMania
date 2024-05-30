@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Création d'un produit
+	Mise a jour d'un produit
 	{{ parent() }}
 {% endblock %}
 
 {% block body %}
 	<section>
-		<h1>Création d'un produit</h1>
+		<h1>Mise a jour d'un produit</h1>
 		{% include 'Backend/Product/_form.html.twig' with { buttonLabel: 'Modifier' } %}
 		<a href="{{ path('admin.product.index') }}" class="btn btn-secondary mt-4">Retour à la liste</a>
 	</section>
