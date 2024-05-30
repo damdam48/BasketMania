@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Création d'un utilisateur
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Création d'un utilisateur</h1>
+
+		{% include 'Backend/User/_form.html.twig' with { buttonLabel: 'Créer' } %}
+		<a href="{{ path('admin.user.index') }}" class="">Retour à la liste</a>
+	</section>
+{% endblock %}
