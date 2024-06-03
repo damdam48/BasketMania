@@ -1,0 +1,25 @@
+<div>
+	<div>
+		<em>{{ delivery.name }}</em>
+	</div>
+		<div>
+		<em>{{ delivery.description }}</em>
+	</div>
+		<div>
+		<em>{{ delivery.price }}</em>
+	</div>
+	<div>
+		<em>{{ delivery.enable }}</em>
+	</div>
+	<div>
+		<a href="{{ path('admin.delivery.update', {id: delivery.id }) }}" class="">Update</a>
+	</div>
+	<form method="POST" action="{{ path('admin.delivery.delete', {id: delivery.id}) }}" onsubmit="return confirm('Êtes-vous sùr de vouloir supprimer ( {{ delivery.name }} ) ?')">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ delivery.id) }}">
+		<button class="">Supprimer</button>
+	</form>
+	<br>
+
+
+</div>

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Mise a jour d'un produit
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Mise a jour d'un produit</h1>
+		{% include 'Backend/Delivery/_form.html.twig' with { buttonLabel: 'Modifier' } %}
+		<a href="{{ path('admin.delivery.index') }}" class="btn btn-secondary mt-4">Retour à la liste</a>
+	</section>
+{% endblock %}

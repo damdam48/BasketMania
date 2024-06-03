@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des deliverys
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des deliverys</h1>
+
+	{% for delivery in deliverys %}
+		{% include 'Components/_deliveryCard.html.twig' %}
+	{% endfor %}
+
+	<br>
+	<a href="{{ path('admin.delivery.create') }}">Créer un delivery</a>
+
+{% endblock %}
