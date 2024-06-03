@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Création d'une taxe
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Création d'une taxe</h1>
+
+		{% include 'Backend/Taxe/_form.html.twig' with { buttonLabel: 'Créer' } %}
+		<a href="{{ path('admin.taxe.index') }}" class="">Retour à la liste</a>
+	</section>
+{% endblock %}

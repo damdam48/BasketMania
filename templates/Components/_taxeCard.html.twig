@@ -1,0 +1,21 @@
+<div>
+	<div>
+		<em>{{ taxe.name }}</em>
+	</div>
+		<div>
+		<em>{{ taxe.rate }}</em>
+	<div>
+		<em>{{ taxe.enable }}</em>
+	</div>
+	<div>
+		<a href="{{ path('admin.taxe.update', {id: taxe.id }) }}" class="">Update</a>
+	</div>
+	<form method="POST" action="{{ path('admin.taxe.delete', {id: taxe.id}) }}" onsubmit="return confirm('Êtes-vous sùr de vouloir supprimer ( {{ taxe.name }} ) ?')">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ taxe.id) }}">
+		<button class="">Supprimer</button>
+	</form>
+	<br>
+
+
+</div>
