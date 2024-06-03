@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Création d'un delivery
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Création d'un delivery</h1>
+
+		{% include 'Backend/Delivery/_form.html.twig' with { buttonLabel: 'Créer' } %}
+		<a href="{{ path('admin.delivery.index') }}" class="">Retour à la liste</a>
+	</section>
+{% endblock %}
