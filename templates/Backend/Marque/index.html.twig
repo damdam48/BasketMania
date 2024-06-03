@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des marques
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des marques</h1>
+
+	{% for marque in marques %}
+		{% include 'Components/_marqueCard.html.twig' %}
+	{% endfor %}
+
+	<br>
+	<a href="{{ path('admin.marque.create') }}">Créer une marque</a>
+
+{% endblock %}

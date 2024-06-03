@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MarqueRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Marque
 {
     #[ORM\Id]
@@ -120,6 +121,26 @@ class Marque
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): static
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    #[ORM\PreUpdate]
+    public function setUpadtedAtValue(): static
+    {
+        if ($this->updatedAt === null) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
 
         return $this;
     }

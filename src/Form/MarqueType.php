@@ -17,12 +17,12 @@ class MarqueType extends AbstractType
             ->add('description')
             ->add('imageName')
             ->add('enable')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
+            // ->add('createdAt', null, [
+            //     'widget' => 'single_text',
+            // ])
+            // ->add('updatedAt', null, [
+            //     'widget' => 'single_text',
+            // ])
         ;
     }
 
