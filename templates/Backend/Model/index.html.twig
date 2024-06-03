@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des models
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des models</h1>
+
+	{% for model in models %}
+		{% include 'Components/_modelCard.html.twig' %}
+	{% endfor %}
+
+	<br>
+	<a href="{{ path('admin.model.create') }}">Créer un model</a>
+
+{% endblock %}
