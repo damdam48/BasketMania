@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des genders
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des genders</h1>
+
+	{% for gender in genders %}
+		{% include 'Components/_genderCard.html.twig' %}
+	{% endfor %}
+
+	<br>
+	<a href="{{ path('admin.gender.create') }}">Créer un gender</a>
+
+{% endblock %}
+

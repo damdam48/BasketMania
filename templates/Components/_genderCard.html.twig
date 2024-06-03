@@ -1,0 +1,19 @@
+<div>
+	<div>
+		<em>{{ gender.name }}</em>
+	</div>
+	<div>
+		<em>{{ gender.enable }}</em>
+	</div>
+	<div>
+		<a href="{{ path('admin.gender.update', {id: gender.id }) }}" class="">Update</a>
+	</div>
+	<form method="POST" action="{{ path('admin.gender.delete', {id: gender.id}) }}" onsubmit="return confirm('Êtes-vous sùr de vouloir supprimer ( {{ gender.name }} ) ?')">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ gender.id) }}">
+		<button class="">Supprimer</button>
+	</form>
+	<br>
+
+
+</div>
