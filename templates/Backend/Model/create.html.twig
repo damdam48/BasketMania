@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Création d'un model
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Création d'un model</h1>
+
+		{% include 'Backend/Model/_form.html.twig' with { buttonLabel: 'Créer' } %}
+		<a href="{{ path('admin.model.index') }}" class="">Retour à la liste</a>
+	</section>
+{% endblock %}
