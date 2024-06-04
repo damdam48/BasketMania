@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des products variants
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des products variants</h1>
+
+	{% for productVariant in productVariants %}
+		{% include 'Components/_productVariantCard.html.twig' %}
+	{% endfor %}
+
+	<br>
+	<a href="{{ path('admin.productvariant.create') }}">Créer un product variant</a>
+
+{% endblock %}

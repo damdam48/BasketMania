@@ -22,6 +22,9 @@ class Taxe
     #[ORM\Column]
     private ?bool $enable = null;
 
+    #[ORM\ManyToOne(inversedBy: 'taxe_id')]
+    private ?ProductVariant $productVariant_id = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Taxe
     public function setEnable(bool $enable): static
     {
         $this->enable = $enable;
+
+        return $this;
+    }
+
+    public function getProductVariantId(): ?ProductVariant
+    {
+        return $this->productVariant_id;
+    }
+
+    public function setProductVariantId(?ProductVariant $productVariant_id): static
+    {
+        $this->productVariant_id = $productVariant_id;
 
         return $this;
     }
