@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des taxes
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des taxes</h1>
+
+	{% for taxe in taxes %}
+		{% include 'Components/_taxeCard.html.twig' %}
+	{% endfor %}
+
+	<br>
+	<a href="{{ path('admin.taxe.create') }}">Créer une taxes</a>
+
+{% endblock %}
