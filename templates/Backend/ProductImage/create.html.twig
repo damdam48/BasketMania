@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Création de products images
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Création de products imagest</h1>
+
+		{% include 'Backend/ProductImage/_form.html.twig' with { buttonLabel: 'Créer' } %}
+		<a href="{{ path('admin.productimage.index') }}" class="">Retour à la liste</a>
+	</section>
+{% endblock %}

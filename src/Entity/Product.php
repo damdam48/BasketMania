@@ -43,9 +43,16 @@ class Product
     #[ORM\OneToMany(targetEntity: ProductVariant::class, mappedBy: 'product_id')]
     private Collection $productVariants;
 
+    /**
+     * @var Collection<int, ProductImage>
+     */
+    #[ORM\OneToMany(targetEntity: ProductImage::class, mappedBy: 'product')]
+    private Collection $images;
+
     public function __construct()
     {
         $this->productVariants = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,6 +176,36 @@ class Product
             // set the owning side to null (unless already changed)
             if ($productVariant->getProductId() === $this) {
                 $productVariant->setProductId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductImage>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(ProductImage $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(ProductImage $image): static
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getProduct() === $this) {
+                $image->setProduct(null);
             }
         }
 

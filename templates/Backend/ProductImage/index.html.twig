@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des products images
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des products images</h1>
+
+	{% for productImage in productImages %}
+		{% include 'Components/_productImageCard.html.twig' %}
+	{% endfor %}
+
+	<br>
+	<a href="{{ path('admin.productimage.create') }}">Créer un product Image</a>
+
+{% endblock %}

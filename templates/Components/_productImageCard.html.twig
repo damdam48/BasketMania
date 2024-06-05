@@ -1,0 +1,26 @@
+<div>
+	<div>
+		<em>{{ productImage.imageName }}</em>
+	</div>
+
+	<div>
+		<em>{{ productImage.imageSize }}</em>
+	</div>
+
+	<div>
+		<em>{{ productImage.product.name }}</em>
+	</div>
+
+	<div>
+		<a href="{{ path('admin.productimage.update', {id: productImage.id }) }}" class="">Update</a>
+	</div>
+
+	<form method="POST" action="{{ path('admin.productimage.delete', {id: productImage.id}) }}" onsubmit="return confirm('Êtes-vous sùr de vouloir de la supprimer ?')">
+		<input type="hidden" name="_method" value="DELETE">
+		<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ productImage.id) }}">
+		<button class="">Supprimer</button>
+	</form>
+	<br>
+
+
+</div>
